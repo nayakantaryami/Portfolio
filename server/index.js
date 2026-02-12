@@ -9,58 +9,41 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const DEFAULT_MONGODB_URI =
-  "mongodb+srv://nayakantaryami324_db_user:Nayak1169@cluster0.ylolqeg.mongodb.net/?appName=Cluster0";
-const MONGODB_URI = process.env.MONGODB_URI || DEFAULT_MONGODB_URI;
 
 app.use(cors());
 app.use(express.json());
 
 const connectDb = async () => {
+  if (!process.env.MONGODB_URI) {
+    console.log("MONGODB_URI not provided. Serving fallback resume data.");
+    return;
+  }
+
   try {
-    await mongoose.connect(MONGODB_URI);
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log("MongoDB connected");
   } catch (error) {
     console.error("MongoDB connection failed:", error.message);
   }
 };
 
-const seedPortfolioIfMissing = async () => {
-  if (mongoose.connection.readyState !== 1) {
-    return;
-  }
-
-  const existingPortfolio = await Portfolio.findOne().lean();
-
-  if (!existingPortfolio) {
-    await Portfolio.create(fallbackData);
-    console.log("Seeded MongoDB with portfolio data from resume");
-  }
-};
-
 app.get("/api/health", (_req, res) => {
-  res.json({ ok: true, dbState: mongoose.connection.readyState });
+  res.json({ ok: true });
 });
 
 app.get("/api/portfolio", async (_req, res) => {
-  try {
-    if (mongoose.connection.readyState === 1) {
-      const savedPortfolio = await Portfolio.findOne().lean();
+  if (mongoose.connection.readyState === 1) {
+    const savedPortfolio = await Portfolio.findOne().lean();
 
-      if (savedPortfolio) {
-        return res.json(savedPortfolio);
-      }
+    if (savedPortfolio) {
+      return res.json(savedPortfolio);
     }
-
-    return res.json(fallbackData);
-  } catch (error) {
-    console.error("Failed to fetch portfolio:", error.message);
-    return res.status(500).json({ message: "Failed to fetch portfolio data" });
   }
+
+  return res.json(fallbackData);
 });
 
 app.listen(PORT, async () => {
   await connectDb();
-  await seedPortfolioIfMissing();
   console.log(`Server running at http://localhost:${PORT}`);
 });

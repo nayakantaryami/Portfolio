@@ -1,21 +1,11 @@
 # MERN Portfolio - Antaryami Nayak
 
-A simple, professional, and aesthetic portfolio website built with the MERN stack and populated from your resume.
+A simple, professional, and aesthetic portfolio website built with the MERN stack.
 
 ## Stack
-- **MongoDB Atlas**
+- **MongoDB** (optional data persistence)
 - **Express + Node.js** backend API
 - **React (Vite)** frontend
-
-## MongoDB
-The server is preconfigured with your MongoDB URI and will auto-seed the portfolio data if the collection is empty.
-
-You can still override it by creating `server/.env`:
-
-```bash
-MONGODB_URI=mongodb+srv://nayakantaryami324_db_user:Nayak1169@cluster0.ylolqeg.mongodb.net/?appName=Cluster0
-PORT=5000
-```
 
 ## Run locally
 ```bash
@@ -26,9 +16,11 @@ npm run dev
 - React app: `http://localhost:5173`
 - API server: `http://localhost:5000`
 
-## Useful commands
+## Optional MongoDB setup
+Create `server/.env`:
 ```bash
-npm run dev:server
-npm run dev:client
-npm run build
+MONGODB_URI=your_mongodb_connection_string
+PORT=5000
 ```
+
+If MongoDB is not configured, the API serves the resume data from a local fallback file.
