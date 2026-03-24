@@ -1,26 +1,29 @@
-import Section from "./Section";
-
+﻿import Section from "./Section";
 const ProjectsSection = ({ projects }) => (
-  <Section title="Projects">
+  <Section title="Projects" subtitle="Selected Work">
     <div id="projects" className="anchor" />
-    {projects.map((item) => (
-      <article key={item.title} className="item">
-        <div>
+    <div className="projects-grid">
+      {projects.map((item) => (
+        <article key={item.title} className="project-card">
+          <div className="project-meta">
+            <span className="project-period">{item.period}</span>
+            <span className="project-type">{item.stack[0]}</span>
+          </div>
           <h3>{item.title}</h3>
-          <p className="subtitle">{item.stack.join(" | ")}</p>
-          <ul>
-            {item.bullets.map((bullet) => (
-              <li key={bullet}>{bullet}</li>
+          <p className="project-summary">{item.bullets[0]}</p>
+          <div className="project-tags">
+            {item.stack.map((tag) => (
+              <span key={tag} className="tag">
+                {tag}
+              </span>
             ))}
-          </ul>
-          <a href={item.github} target="_blank" rel="noreferrer">
-            View on GitHub
+          </div>
+          <a className="project-cta" href={item.github} target="_blank" rel="noreferrer">
+            View Project
           </a>
-        </div>
-        <p className="meta">{item.period}</p>
-      </article>
-    ))}
+        </article>
+      ))}
+    </div>
   </Section>
 );
-
 export default ProjectsSection;

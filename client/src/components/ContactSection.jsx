@@ -1,7 +1,5 @@
-import Section from "./Section";
-
+﻿import Section from "./Section";
 const formatLink = (value) => (value ? value.replace(/^https?:\/\//, "") : "");
-
 const TwitterIcon = () => (
   <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
     <path
@@ -10,7 +8,6 @@ const TwitterIcon = () => (
     />
   </svg>
 );
-
 const ContactSection = ({ basics }) => {
   const twitterUrl = basics.twitter || "https://x.com/";
   const items = [
@@ -39,29 +36,36 @@ const ContactSection = ({ basics }) => {
       icon: "@",
     },
   ].filter(Boolean);
-
   return (
-    <Section title="Contact Me">
+    <Section title="Let's build something" subtitle="Contact">
       <div id="contact" className="anchor" />
-      <div className="contact-grid">
-        {items.map((item) => (
-          <a
-            key={item.label}
-            className="contact-card"
-            href={item.href}
-            target={item.href.startsWith("http") ? "_blank" : undefined}
-            rel="noreferrer"
-          >
-            <span className="contact-icon" aria-hidden="true">
-              {item.icon}
-            </span>
-            <span className="contact-label">{item.label}</span>
-            <span className="contact-value">{item.value}</span>
-          </a>
-        ))}
+      <div className="contact-cta">
+        <div>
+          <h3>Ready to collaborate?</h3>
+          <p>
+            I help teams ship reliable products with a balance of performance,
+            clarity, and long-term scalability.
+          </p>
+        </div>
+        <div className="contact-grid">
+          {items.map((item) => (
+            <a
+              key={item.label}
+              className="contact-card"
+              href={item.href}
+              target={item.href.startsWith("http") ? "_blank" : undefined}
+              rel="noreferrer"
+            >
+              <span className="contact-icon" aria-hidden="true">
+                {item.icon}
+              </span>
+              <span className="contact-label">{item.label}</span>
+              <span className="contact-value">{item.value}</span>
+            </a>
+          ))}
+        </div>
       </div>
     </Section>
   );
 };
-
 export default ContactSection;

@@ -115,6 +115,22 @@ const portfolioData = {
       "Led the planning and execution of an event with over 3,000 attendees, resolving logistical challenges and making timely decisions to ensure smooth operations.",
     ],
   },
+  vlogs: [
+    {
+      title: "Building scalable APIs",
+      date: "Mar 2026",
+      description:
+        "How I design REST APIs with clean contracts and versioning.",
+      link: "https://example.com/vlogs/scalable-apis",
+    },
+    {
+      title: "System design prep",
+      date: "Feb 2026",
+      description:
+        "Approaching architecture interviews with real-world tradeoffs.",
+      link: "https://example.com/vlogs/system-design",
+    },
+  ],
 };
 
 export default portfolioData;

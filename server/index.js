@@ -10,7 +10,12 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CLIENT_ORIGIN || true,
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 const connectDb = async () => {
@@ -29,6 +34,36 @@ const connectDb = async () => {
 
 app.get("/api/health", (_req, res) => {
   res.json({ ok: true });
+});
+
+app.get(["/", "/home"], (_req, res) => {
+  res.json({
+    message: "Portfolio API",
+    endpoints: ["/api/portfolio", "/resume", "/vlogs"],
+  });
+});
+
+app.get("/resume", (_req, res) => {
+  const resumeId = "18tdkE07_MSRC1-taylQPaKOvo6x5XMNj";
+  const resumePreviewUrl = `https://drive.google.com/file/d/${resumeId}/preview`;
+  const resumeViewUrl = `https://drive.google.com/file/d/${resumeId}/view?usp=sharing`;
+  const resumeDownloadUrl = `https://drive.google.com/uc?export=download&id=${resumeId}`;
+  const resumePhotos = (
+    process.env.RESUME_PHOTOS || "http://localhost:5173/linkedinprofile.jpg"
+  )
+    .split(",")
+    .map((url) => url.trim())
+    .filter(Boolean);
+  res.json({
+    resumePreviewUrl,
+    resumeViewUrl,
+    resumeDownloadUrl,
+    photos: resumePhotos,
+  });
+});
+
+app.get("/vlogs", (_req, res) => {
+  res.json({ vlogs: fallbackData.vlogs || [] });
 });
 
 app.get("/api/portfolio", async (_req, res) => {
