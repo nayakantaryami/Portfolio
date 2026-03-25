@@ -11,6 +11,16 @@ const portfolioData = {
     leetcode: "https://leetcode.com/u/nayakantaryami",
     twitter: "https://x.com/",
   },
+  resume: {
+    resumeId: "18tdkE07_MSRC1-taylQPaKOvo6x5XMNj",
+    resumePreviewUrl:
+      "https://drive.google.com/file/d/18tdkE07_MSRC1-taylQPaKOvo6x5XMNj/preview",
+    resumeViewUrl:
+      "https://drive.google.com/file/d/18tdkE07_MSRC1-taylQPaKOvo6x5XMNj/view?usp=sharing",
+    resumeDownloadUrl:
+      "https://drive.google.com/uc?export=download&id=18tdkE07_MSRC1-taylQPaKOvo6x5XMNj",
+    photos: ["/linkedinprofile.jpg"],
+  },
   education: [
     {
       institution: "National Institute of Technology, Rourkela",
@@ -39,21 +49,11 @@ const portfolioData = {
       role: "Software Engineer Intern",
       organization: "UKG (Ultimate Kronos Group)",
       period: "Jan 2026 - Present",
-      bullets: [
-        "Built RESTful API endpoints for user management and chat creation on an internal multi-tenant collaboration platform.",
-        "Orchestrated smoke and regression test suites with Robot Framework, cutting testing time by 20% and stabilizing critical user flows.",
-        "Developed automated API test suites using Mocha and Chai.js to validate RESTful endpoints across multiple tenants.",
-        "Automated API regression scripts, reducing debugging time by 10% and improving reliability of client workflows.",
-      ],
     },
     {
       role: "Research Intern",
       organization: "National Institute of Technology, Rourkela",
       period: "May - Jul 2025",
-      bullets: [
-        "Developed a smart traffic management system using ANNs to optimize signal timings from real-time traffic flow and emergency vehicle detection.",
-        "Processed CCTV video feeds with YOLO-based detection to extract live vehicle counts and traffic density.",
-      ],
     },
   ],
   projects: [
@@ -77,6 +77,17 @@ const portfolioData = {
         "Implemented role-based access control (admin, doctor, user) using JWT and Bcrypt for secure workflows.",
         "Built modular REST APIs for user management, appointment scheduling, and payment processing.",
         "Integrated Razorpay for real-time payments and subscriptions.",
+      ],
+    },
+    {
+      title: "LangBuddy",
+      stack: ["Node.js", "Express.js", "MongoDB", "ReactJS"],
+      period: "2026",
+      github: "https://github.com/nayakantaryami/langbuddy",
+      bullets: [
+        "Built a language-learning companion that pairs conversation practice with personalized feedback.",
+        "Implemented user progress tracking with structured lesson data and session history.",
+        "Designed a responsive UI for guided exercises and streak-based motivation.",
       ],
     },
   ],
@@ -115,22 +126,6 @@ const portfolioData = {
       "Led the planning and execution of an event with over 3,000 attendees, resolving logistical challenges and making timely decisions to ensure smooth operations.",
     ],
   },
-  vlogs: [
-    {
-      title: "Building scalable APIs",
-      date: "Mar 2026",
-      description:
-        "How I design REST APIs with clean contracts and versioning.",
-      link: "https://example.com/vlogs/scalable-apis",
-    },
-    {
-      title: "System design prep",
-      date: "Feb 2026",
-      description:
-        "Approaching architecture interviews with real-world tradeoffs.",
-      link: "https://example.com/vlogs/system-design",
-    },
-  ],
 };
 
 export default portfolioData;

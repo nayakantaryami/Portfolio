@@ -1,40 +1,19 @@
-﻿import { useEffect, useState } from "react";
-import ContactSection from "./components/ContactSection";
-import EducationSection from "./components/EducationSection";
-import ExperienceSection from "./components/ExperienceSection";
+﻿import ContactSection from "./components/ContactSection";
 import Intro from "./components/Intro";
+import LifeTimelineSection from "./components/LifeTimelineSection";
 import ProjectsSection from "./components/ProjectsSection";
 import ResumePage from "./components/ResumePage";
 import ServicesSection from "./components/ServicesSection";
 import SkillsSection from "./components/SkillsSection";
 import StickyHeader from "./components/StickyHeader";
 import TechTicker from "./components/TechTicker";
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+import portfolioData from "./data/portfolioData";
 function App() {
-  const [portfolio, setPortfolio] = useState(null);
   const isResumePage = window.location.pathname === "/resume";
-  useEffect(() => {
-    if (isResumePage) {
-      return;
-    }
-
-    fetch(`${API_BASE}/api/portfolio`)
-      .then((res) => res.json())
-      .then((data) => setPortfolio(data))
-      .catch((error) => console.error("Failed to load portfolio:", error));
-  }, [isResumePage]);
-
   if (isResumePage) {
-    return <ResumePage apiBase={API_BASE} />;
+    return <ResumePage resume={portfolioData.resume} />;
   }
-  if (!portfolio) {
-    return (
-      <main className="page loading">
-        <p>Loading portfolio...</p>
-      </main>
-    );
-  }
-  const { basics, education, experience, projects, skills } = portfolio;
+  const { basics, education, experience, projects, skills } = portfolioData;
   const techItems = [
     ...skills.languages,
     ...skills.frameworks,
@@ -53,8 +32,7 @@ function App() {
       <section className="stack">
         <ServicesSection />
         <ProjectsSection projects={projects} />
-        <ExperienceSection experience={experience} />
-        <EducationSection education={education} />
+        <LifeTimelineSection education={education} experience={experience} />
         <SkillsSection skills={skills} />
         <ContactSection basics={basics} />
       </section>

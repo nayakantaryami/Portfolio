@@ -1,15 +1,4 @@
-import { useEffect, useState } from "react";
-
-const ResumePage = ({ apiBase }) => {
-  const [resume, setResume] = useState(null);
-
-  useEffect(() => {
-    fetch(`${apiBase}/resume`)
-      .then((res) => res.json())
-      .then((data) => setResume(data))
-      .catch((error) => console.error("Failed to load resume:", error));
-  }, [apiBase]);
-
+const ResumePage = ({ resume }) => {
   if (!resume) {
     return (
       <main className="page loading">

@@ -8,11 +8,6 @@ const ExperienceSection = ({ experience }) => (
           <div>
             <h3>{item.role}</h3>
             <p className="subtitle">{item.organization}</p>
-            <ul>
-              {item.bullets.map((bullet) => (
-                <li key={bullet}>{bullet}</li>
-              ))}
-            </ul>
           </div>
           <p className="meta">{item.period}</p>
         </article>

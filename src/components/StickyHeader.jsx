@@ -11,8 +11,8 @@
       <a className="nav-link" href="#projects">
         Projects
       </a>
-      <a className="nav-link" href="#experience">
-        Experience
+      <a className="nav-link" href="#timeline">
+        Timeline
       </a>
       <a className="nav-link" href="#skills">
         Skills
